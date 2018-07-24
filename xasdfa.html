@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- meta tags -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="google" content="notranslate">
+<meta name="robots" content="noindex, nofollow">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta http-equiv="cleartype" content="on">
+
+<!-- colors -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#000000">
+<meta name="msapplication-TileColor" content="#000000">
+<!-- titles -->
+<meta name="author" content="Andy Martha">
+<meta name="apple-mobile-web-app-title" content="Pax South 2019 Meetup">
+<meta name="application-name" content="Pax South 2019 Meetup">
+<title>Pax South 2019 Meetup</title>
+<meta property="og:title" content="Pax South 2019 Meetup" />
+<meta property="og:description" content="Pax South 2019 Meetup" />
+<link rel="stylesheet" href="https://www.theytg.com/assets/p.css">
+<link href="https://fonts.googleapis.com/css?family=Rye" rel="stylesheet">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Rye', cursive;
+  background: darkred;
+}
+a {
+  text-decoration: none;
+  color: #0078e7;
+}
+h1 {
+  margin-top: 0px;
+}
+h1, .sign-up {
+  text-align: center;
+}
+#success-message, #error-message {
+    background: rgba(0, 0, 0, .85);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .8);
+    z-index: 99999;
+    border-radius: 3px;
+    color: rgba(255, 255, 255, .9);
+    padding: 10px 15px;
+    max-width: 40%;
+    word-break: keep-all;
+    margin: 0 auto;
+    text-align: center;
+    position: fixed;
+    left: 0;
+    right: 0;
+    display: none;
+}
+#error-message {
+    background: #ff0000;
+}
+#header {
+  background: #541c00;
+  width: 100%;
+}
+.roommates img, .friends img {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+}
+strong {
+  color: #000;
+}
+#header strong {
+  color: #fff;
+}
+
+h2 {
+  background: #fff9e6;
+  color: #ff7600;
+  padding: 1em;
+}
+
+a img {
+  width: 100%;
+  height: 100%;
+}
+
+#offlineroommates {
+ padding: 1em;
+}
+
+.friends {
+  cursor: pointer;
+}
+
+#revoke-access-button {
+  margin-left: 25px
+}
+
+h2, h3 {
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+h3, h4, ul {
+  margin-bottom: 1em;
+}
+
+p {
+    line-height: 1.6em;
+}
+
+.pure-button-primary {
+  font-size: 200%;
+  white-space: normal;
+}
+
+#eastButton, #vidconButton, #westButton, #southButton {
+  display: none;
+}
+
+.l-content {
+    margin: 0 auto;
+}
+
+.l-box {
+    padding: 0.5em 2em;
+}
+
+ .pricing-tables,
+ .information {
+    max-width: 1200px;
+    margin: 0 auto;
+ }
+.pricing-tables {
+    margin-bottom: 3.125em;
+    text-align: center;
+}
+
+.pricing-table {
+    border: 1px solid #ddd;
+    margin: 0 0.5em 2em;
+    padding: 0 0 3em;
+    background: #f7f7f7;
+}
+
+.pricing-table-free .pricing-table-header {
+    background: #519251;
+}
+
+.pricing-table-biz .pricing-table-header {
+    background: #2c4985;
+}
+
+.pricing-table-header {
+    background: #111;
+    color: #fff;
+}
+    .pricing-table-header h2 {
+        margin: 0;
+        padding-top: 2em;
+        font-size: 1em;
+        font-weight: normal;
+
+    }
+
+.pricing-table-price {
+    font-size: 6em;
+    margin: 0.2em 0 0;
+    font-weight: 100;
+}
+    .pricing-table-price span {
+        display: block;
+        text-transform: uppercase;
+        font-size: 0.2em;
+        padding-bottom: 2em;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.5);
+        *color: #fff;
+    }
+
+.pricing-table-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.pricing-table-list li {
+    padding: 0.8em 0;
+    background: #f7f7f7;
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.button-choose {
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #333;
+    border-radius: 2em;
+    font-weight: bold;
+    position: relative;
+    bottom: -1.5em;
+}
+
+.information-head {
+    color: black;
+    font-weight: 500;
+}
+
+.footer {
+    background: #111;
+    color: #888;
+    text-align: center;
+}
+    .footer a {
+        color: #ddd;
+    }
+
+
+@media(min-width: 767px) {
+
+    .banner-head {
+        font-size: 4em;
+    }
+    .pricing-table {
+        margin-bottom: 0;
+    }
+
+}
+
+@media (min-width: 480px) {
+    .banner {
+        height: 400px;
+    }
+    .banner-head {
+        font-size: 3em;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+#revoke-access-button {
+  margin-left: 1px;
+}
+
+}
+</style>
+<script>
+networkstatus = "a defined variable";
+if (navigator.onLine) {
+  networkstatus = "online";
+}
+
+window.addEventListener("online", function() {
+  networkstatus = "online";
+  console.log("You are now online");
+}, true);
+
+window.addEventListener("offline", function() {
+  networkstatus = "offline";
+  console.log("You are now offline");
+}, true);
+
+document.addEventListener("online", function() {
+  networkstatus = "online";
+  console.log("You are now online");
+}, true);
+
+document.addEventListener("offline", function() {
+  networkstatus = "offline";
+  console.log("You are now offline");
+}, true);
+</script>
+</head>
+<body>
+<div id="header">
+<strong>Pax South &nbsp; &nbsp;</strong>
+<button id="signInOrOutButton" onclick="handleAuthClick();" class="pure-button pure-button-secondary">Login With Your Youtube to signup</button>
+</div>
+
+<div id="success-message">Saved Successfully</div>
+<div id="error-message">Error Saving</div>
+
+
+
+<div class="pricing-tables pure-g">
+  <div class="pure-u-1 pure-u-md-1-3">
+    <div class="pricing-table pricing-table-free">
+
+      <div class="pricing-table-header">
+        <a href="https://south.paxsite.com" target="_blank"><h2>Pax South</h2></a>
+      </div>
+
+<em>When:</em><strong> JAN 12 - 14 (?) Fri-Sun</strong><br>
+<em>Where:</em><strong> San Antonio, TX. Middle USA.</strong><br>
+<em>Tickets:</em><strong> to be available yet. Usually available.</strong><br>
+<em>Travel assistance:</em><strong> Available</strong><br>
+<em>Best Travel Options:</em><strong> Fly, Drive</strong><br>
+<em>Focus:</em><strong> Community and parties</strong><br>
+<a href="http://www.marriott.com/hotels/hotel-photos/satdt-san-antonio-marriott-riverwalk/" target="_blank"><img src="http://cache.marriott.com/marriottassets/marriott/SATDT/satdt-guestroom-0107-hor-wide.jpg?downsize=2880px:*" alt="photo of residence" class="pure-img"></a>
+<a href="https://www.instagram.com/biolithic" target="_blank"><img src="https://scontent-ort2-1.cdninstagram.com/vp/b219d08a909b1d830d7011a493dc1a8c/5AE5D374/t51.2885-15/e35/26071415_550273555308329_1917817882528448512_n.jpg" class="pure-img"></a>
+
+
+<h3>House Rules:</h3>
+<ul class="pricing-table-list">
+<li>No smoking/420 in the residence</li>
+<li>Check-in is anytime after 3PM</li>
+<li>Check out by 12PM</li>
+</ul>
+
+<h3>Order of preference suggestions<br>
+If we can't find these people, we will open to anyone</h3>
+<ul class="pricing-table-list">
+<li>Big One Shot Gurl fan/supporter and never met her before</li>
+<li>Youtube Gaming streamer 4+ days a week</li>
+<li>Live outside of USA</li>
+<li>Interested in making connections for future full time streaming</li>
+<li>Big One Shot Gurl fan/supporter</li>
+<li>Attending the con and purchased ticket</li>
+<li>Financial need.  For example, if Donald Trump or Hilary Clinton comes to us and says, "I just cant afford it please help", we will cry BS.  However, there are some people who could appreciate a helping hand like this.</li>
+</ul>
+
+
+<button id="eastButton" class="pure-button pure-button-primary" onclick="signup('east');">I intend on making the trip to this con and would like to stay here. I understand I may not need a ticket to this con.</button>
+
+</div>
+</div>
+</div>
+
+
+
+<div style="padding-left: .5em; padding-right: .5em;">
+
+<strong>Pros of using us</strong><br>
+<ul>
+<li>Shared community is fun</li>
+<li>Cheaper lodging than doing it yourself</li>
+<li>Easier people networking and planning of group activities</li>
+<li>We have done it before and are pretty good at it</li>
+<li>Less planning and stress for housing needed by you</li>
+<li>We have already rented and paid for the close lodgings</li>
+</ul>
+
+<strong>Why to not use us</strong><br>
+<ul>
+<li>You have your own life and want more privacy, which is ok</li>
+<li>You disagree with the choices made on where or what housing is</li>
+<li>You disagree with the rules set</li>
+<li>You dont know if you are attending or not</li>
+<li>More planning for housing needed by you</li>
+</ul>
+
+<h4>Note: each housing signup has its preferences which you may or may not fall into. We reserve the right to boot you out of a spot if we feel that someone else is better suited for your spot.</h4>
+
+<h4>Note: One Shot Gurl or X big streamer is probably not staying at these. We will not disclose the names of those who are finally to the public.  This is just to throw your name into the hat for selection.</h4>
+
+<h4>Note: We will only disclose residence address and contact information after you have been accepted and paid the full amount asked.</h4>
+
+<h4>Note: We will only book male roommates with males and females with females to avoid drama and controversy, unless you say, "Me and X are married/a public dating couple".  This is to avoid creeps who are like, "Yea, I want to sleep with X streamer! Put me in their room, that is why I am coming." Your life is your life, but we will try to avoid awkward room situations if possible.  The houses are mixed gender.</h4>
+
+<h4>Do not put pressure on yourself to attend every one.  If you can only attend one, I suggest Pax South. No one can do everything, but everyone can do something.</h4>
+
+<h4>Note: All group pictures taken by Biolithic. For more information, message Biolithic. We will not "put you on the list", you must sign up to be considered.  This will help us be organized and spend more time at your streams and less time trying to figure out who is staying or not staying in lots of messages.</h4>
+
+</div>
+
+<script>
+
+GoogleAuth = "";
+var SCOPE = 'https://www.googleapis.com/auth/youtube.force-ssl';
+
+function handleClientLoad() {
+    // Load the API's client and auth2 modules.
+    // Call the initClient function after the modules load.
+    gapi.load('client:auth2', initClient);
+}
+
+function initClient() {
+    // Retrieve the discovery document for version 3 of YouTube Data API.
+    // In practice, your app can retrieve one or more discovery documents.
+    var discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest';
+
+    // Initialize the gapi.client object, which app uses to make API requests.
+    // Get API key and client ID from API Console.
+    // 'scope' field specifies space-delimited list of access scopes.
+    gapi.client.init({
+        'apiKey': 'AIzaSyBsUU3yXGjetikZdLIWt-9_SapFOBxNgD4',
+        'discoveryDocs': [discoveryUrl],
+        'clientId': '1093775538128-29fnj4mj326ctueiqjonl36m1hiqcnbt.apps.googleusercontent.com',
+        'scope': SCOPE
+    }).then(function() {
+        GoogleAuth = gapi.auth2.getAuthInstance();
+
+        // Listen for sign-in state changes.
+        GoogleAuth.isSignedIn.listen(updateSigninStatus);
+
+        // Handle initial sign-in state. (Determine if user is already signed in.)
+        var user = GoogleAuth.currentUser.get();
+        setSigninStatus();
+    });
+}
+
+function handleAuthClick() {
+    if (networkstatus !== "online") {
+        alert("Error: You are offline. Try again when you have a network connection.");
+    } else {
+
+        if (GoogleAuth.isSignedIn.get()) {
+            // User is authorized and has clicked 'Sign out' button.
+            GoogleAuth.signOut();
+            window.biolithicMyName = "";
+            window.biolithicMyChannel = "";
+            document.getElementById('east').style.display = 'none';
+            document.getElementById('vidcon').style.display = 'none';
+            document.getElementById('west').style.display = 'none';
+            document.getElementById('south').style.display = 'none';
+            document.getElementById('eastButton').style.display = 'none';
+            document.getElementById('vidconButton').style.display = 'none';
+            document.getElementById('westButton').style.display = 'none';
+            document.getElementById('southButton').style.display = 'none';
+
+        } else {
+            // User is not signed in. Start Google auth flow.
+            GoogleAuth.signIn();
+        }
+
+    }
+
+}
+
+function revokeAccess() {
+    GoogleAuth.disconnect();
+}
+
+function createResource(properties) {
+    var resource = {};
+    var normalizedProps = properties;
+    for (var p in properties) {
+        var value = properties[p];
+        if (p && p.substr(-2, 2) == '[]') {
+            var adjustedName = p.replace('[]', '');
+            if (value) {
+                normalizedProps[adjustedName] = value.split(',');
+            }
+            delete normalizedProps[p];
+        }
+    }
+    for (var p in normalizedProps) {
+        // Leave properties that don't have values out of inserted resource.
+        if (normalizedProps.hasOwnProperty(p) && normalizedProps[p]) {
+            var propArray = p.split('.');
+            var ref = resource;
+            for (var pa = 0; pa < propArray.length; pa++) {
+                var key = propArray[pa];
+                if (pa == propArray.length - 1) {
+                    ref[key] = normalizedProps[p];
+                } else {
+                    ref = ref[key] = ref[key] || {};
+                }
+            }
+        };
+    }
+    return resource;
+}
+
+function removeEmptyParams(params) {
+    for (var p in params) {
+        if (!params[p] || params[p] == 'undefined') {
+            delete params[p];
+        }
+    }
+    return params;
+}
+
+
+// ON LOGIN HERE
+function executeRequest(request) {
+    request.execute(function(response) {
+        console.log("response");
+        console.log(response);
+        if (response.items[0]) {
+            window.biolithicMyName = response.items[0].snippet.title;
+            window.biolithicMyChannel = response.items[0].id;
+            document.getElementById('eastButton').style.display = 'block';
+            document.getElementById('vidconButton').style.display = 'block';
+            document.getElementById('westButton').style.display = 'block';
+            document.getElementById('southButton').style.display = 'block';
+            getIt();
+        }
+
+    });
+}
+
+function buildApiRequest(requestMethod, path, params, properties) {
+    params = removeEmptyParams(params);
+    var request;
+    if (properties) {
+        var resource = createResource(properties);
+        request = gapi.client.request({
+            'body': resource,
+            'method': requestMethod,
+            'path': path,
+            'params': params
+        });
+    } else {
+        request = gapi.client.request({
+            'method': requestMethod,
+            'path': path,
+            'params': params
+        });
+    }
+    executeRequest(request);
+}
+
+function defineRequest() {
+    buildApiRequest('GET', '/youtube/v3/channels', {
+        'mine': 'true',
+        'part': 'snippet'
+    }); // ,contentDetails
+}
+
+function setSigninStatus(isSignedIn) {
+
+    var user = GoogleAuth.currentUser.get();
+    var isAuthorized = user.hasGrantedScopes(SCOPE);
+    if (isAuthorized) {
+        defineRequest();
+        window.biolithicUser = user.w3.ig;
+        document.getElementById('signInOrOutButton').textContent = 'Sign Out';
+    } else {
+        document.getElementById('signInOrOutButton').textContent = 'Login With Your Youtube to signup';
+    }
+}
+
+function updateSigninStatus(isSignedIn) {
+    setSigninStatus();
+}
+
+
+
+function signup(con) {
+      if (networkstatus !== "online") {
+        alert("Error: You are offline. Try again when you have a network connection.");
+      } else {
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', 'https://www.theytg.com/cons/write.php');
+      var params = "&con=" + con + "&youtube_name=" +  window.biolithicUser + "&urgo=AIzaSyAGreq1WKU0RT_Z7Yybbq4xv154asrMLuc";
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      xhr.onload = function() {
+      if (xhr.status !== 200) {
+        alert('Request failed.  Returned status of ' + xhr.status);
+      }
+      var data = xhr.response;
+      console.log(data);
+      if (data == "delete") {
+        alert("You have released your spot at " + con + " in 2018. It will be available to the general public now, first come first serve.");
+      } else {
+        alert("You have signed up to stay at " + con + " in 2018. Thank you, and more information will be given a couple weeks before the event.");
+      }
+
+
+      }
+      xhr.send(params);
+
+
+        return false;
+      }
+    }
+
+
+function getIt() {
+var xhr = new XMLHttpRequest();
+      xhr.open('POST', 'https://www.theytg.com/cons/write.php');
+      var params = "&users=users&youtube_name=Biolithic&urgo=AIzaSyAGreq1WKU0RT_Z7Yybbq4xv154asrMLuc";
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      xhr.onload = function() {
+      if (xhr.status !== 200) {
+        alert('Request failed.  Returned status of ' + xhr.status);
+      }
+      var data = JSON.parse(xhr.response);
+
+      var eastDiv = document.createElement('div');
+      var vidconDiv = document.createElement('div');
+      var westDiv = document.createElement('div');
+      var southDiv = document.createElement('div');
+
+      var eastHTML = "<h3>Pax East HouseMates</h3><p>";
+      var vidconHTML = "<h3>Vidcon HouseMates</h3><p>";
+      var westHTML = "<h3>Pax West HouseMates</h3><p>";
+      var southHTML = "<h3>Pax South HouseMates</h3><p>";
+
+      var thelength = data.length;
+      console.log("name is ");
+      console.log(window.biolithicMyName);
+      var showIt = false;
+      for (var z = 0; z < thelength; z++) {
+
+          if (data[z].con == "east") {
+            eastHTML = eastHTML + " - " + data[z].youtube_name + " - ";
+          }
+
+          if (data[z].con == "vidcon") {
+            vidconHTML = vidconHTML + " - " + data[z].youtube_name + " - ";
+          }
+
+          if (data[z].con == "west") {
+            westHTML = westHTML + " - " + data[z].youtube_name + " - ";
+          }
+
+          if (data[z].con == "south") {
+            southHTML = southHTML + " - " + data[z].youtube_name + " - ";
+          }
+
+          if (window.biolithicMyName == data[z].youtube_name) {
+            showIt = true;
+          }
+      }
+
+      eastHTML = eastHTML + "</p>";
+      vidconHTML = vidconHTML + "</p>";
+      westHTML = westHTML + "</p>";
+      southHTML = southHTML + "</p>";
+
+      if (showIt == true) {
+      eastDiv.innerHTML = eastHTML;
+      document.getElementById("east").appendChild(eastDiv);
+
+      vidconDiv.innerHTML = vidconHTML;
+      document.getElementById("vidcon").appendChild(vidconDiv);
+
+      westDiv.innerHTML = westHTML;
+      document.getElementById("west").appendChild(westDiv);
+
+      southDiv.innerHTML = southHTML;
+      document.getElementById("south").appendChild(southDiv);
+      }
+
+      };
+      xhr.send(params);
+}
+
+</script>
+<script async defer src="https://apis.google.com/js/api.js"
+      onload="this.onload=function(){}; handleClientLoad()"
+      onreadystatechange="if (this.readyState === 'complete') this.onload()">
+</script>
+</body>
+</html>
