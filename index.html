@@ -200,7 +200,7 @@ img {
     background: none;
 }
 
-section {
+section, #signup {
     display: none;
 }
 
@@ -406,11 +406,11 @@ document.addEventListener("offline", function() {
 
                         <h1 id="roomsignup">Room Signup</h1>
                         <label>My Preferred roommate(s)</label>
-                        <input type="text">
+                        <input type="text" id="roommates" pattern="[a-zA-Z]+">
                         <label>Country flying from</label>
-                        <input type="text">
-                        <button id="signup" onclick="handleAuthClick();" class="pure-button">Signup, its free</button>
-
+                        <input type="text" id="country"  pattern="[a-zA-Z]+">
+                        <button id="signInOrOutButton" onclick="handleAuthClick();" class="pure-button">Signup, its free</button>
+                        <button id="signup" onclick="signup();" class="pure-button">Apply</button>
                         <hr>
                         <p>What's the catch?</p>
                         <p>There is no catch, its just that we have been blessed by God with some financial resources and wish to be generous back to the community through this.</p>
@@ -420,7 +420,7 @@ document.addEventListener("offline", function() {
                         <p>"Wait, if you have money, donate to me. Donate to me on stream! I want this money!" </p>
                         <p>No, we have at least 4 times in the last 2 years donated large sums of money to people to attend the event and the person never showed up.  Happy you got the money, but the real deal is that people wanted to see you at the meetup.</p>
 
-                        <p>This isn't "There is a Fortnite tournament and they just donate the money to everyone who asks for money".  You must sign up --  you must play to the rules -- then you receive the prize. The same with this; only you don't play fortnite, you just sign up and make the streams a better place to be.</p>
+                        <p>This isn't "There is a Fortnite tournament and they just donate the money to everyone who asks for money".<br>You must sign up --  you must play to the rules -- then you receive the prize. The same with this; only you don't play fortnite, you just sign up and make the streams a better place to be.</p>
 
                         <p>People behind this scholarship do donate on streams every week.</p>
 
@@ -842,7 +842,6 @@ function executeRequest(request) {
         if (response.items[0]) {
             window.biolithicMyName = response.items[0].snippet.title;
             window.biolithicMyChannel = response.items[0].id;
-            signup();
         }
 
     });
@@ -855,9 +854,11 @@ function setSigninStatus(isSignedIn) {
     if (isAuthorized) {
         defineRequest();
         window.biolithicUser = user.w3.ig;
-        document.getElementById('signup').textContent = 'Sign Out';
+        document.getElementById('signInOrOutButton').textContent = 'Sign Out';
+        document.getElementById('signup').style.display = 'block';
     } else {
-        document.getElementById('signup').textContent = 'Login With Your Youtube to signup';
+        document.getElementById('signInOrOutButton').textContent = 'Login With Your Youtube to signup';
+        document.getElementById('signup').style.display = 'none';
     }
 }
 
@@ -885,7 +886,7 @@ function signup(con) {
             if (data == "delete") {
                 alert("You have released your spot at " + con + " in 2018. It will be available to the general public now, first come first serve.");
             } else {
-                alert("You have signed up to stay at " + con + " in 2018. Thank you, and more information will be given a couple weeks before the event.");
+                alert("You have signed up to stay at Pax South in Jan 2019. Thank you, and more information will be given a couple weeks before the event.");
             }
         }
         xhr.send(params);
