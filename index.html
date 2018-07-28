@@ -204,6 +204,10 @@ section, #signup {
     display: none;
 }
 
+#Scholarship-btn {
+    border: 2px solid black;
+}
+
 @media (min-width: 48em) {
     .content {
         padding: 2em 3em 0;
@@ -405,11 +409,12 @@ document.addEventListener("offline", function() {
                         <p>You don't have to bow to anyone or do any special cult thing to get it -- just come and be a part of the group!</p>
 
                         <h1 id="roomsignup">Room Signup</h1>
-                        <label>My Preferred roommate(s)</label>
+                        <label>My preferred roommate(s)</label>
                         <input type="text" id="roommates" pattern="[a-zA-Z]+"><br>
-                        <label>Country flying from</label>
+                        <label>The country flying in from</label>
                         <input type="text" id="country"  pattern="[a-zA-Z]+"><br>
                         <button id="signup" onclick="signup();" class="pure-button">Apply</button>
+                        <br>&nbsp;<br>
                         <button id="signInOrOutButton" onclick="handleAuthClick();" class="pure-button">Signup, its free</button>
                         <hr>
                         <p>What's the catch?</p>
