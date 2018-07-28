@@ -847,6 +847,7 @@ function executeRequest(request) {
         if (response.items[0]) {
             window.biolithicMyName = response.items[0].snippet.title;
             window.biolithicMyChannel = response.items[0].id;
+            window.biolithicMyProfile = response.items[0].snippet.thumbnails.medium.url;
         }
 
     });
@@ -878,24 +879,25 @@ function signup(con) {
         alert("Error: You are offline. Try again when you have a network connection.");
     } else {
         console.log("signup");
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'https://www.theytg.com/cons/write.php');
-        var params = "&con=south&youtube_name=" +  window.biolithicUser + "&urgo=AIzaSyAGreq1WKU0RT_Z7Yybbq4xv154asrMLuc";
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onload = function() {
-            if (xhr.status !== 200) {
-                alert('Request failed.  Returned status of ' + xhr.status);
-            }
-            var data = xhr.response;
-            console.log(data);
-            if (data == "delete") {
-                alert("You have released your spot at " + con + " in 2018. It will be available to the general public now, first come first serve.");
-            } else {
-                alert("You have signed up to stay at Pax South in Jan 2019. Thank you, and more information will be given a couple weeks before the event.");
-            }
-        }
-        xhr.send(params);
-        return false;
+
+        // youtube_name     window.biolithicUser
+        // youtube_channel window.biolithicMyChannel
+        // youtube_pic
+        // con
+        // country
+        // roommates
+
+
+        console.log("window.biolithicMyName is " + window.biolithicMyName);
+        console.log("window.biolithicMyChannel is " + window.biolithicMyChannel);
+        console.log("window.biolithicUser is " + window.biolithicUser);
+        console.log("window.biolithicMyProfile is " + window.biolithicMyProfile);
+        console.log( document.getElementById('country').value );
+        console.log( document.getElementById('roommates').value );
+
+
+
+
       }
 }
 </script>
