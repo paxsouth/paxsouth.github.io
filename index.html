@@ -227,6 +227,32 @@ section {
 }
 </style>
 <link href="https://fonts.googleapis.com/css?family=Rye" rel="stylesheet">
+<script>
+networkstatus = "a defined variable";
+if (navigator.onLine) {
+  networkstatus = "online";
+}
+
+window.addEventListener("online", function() {
+  networkstatus = "online";
+  console.log("You are now online");
+}, true);
+
+window.addEventListener("offline", function() {
+  networkstatus = "offline";
+  console.log("You are now offline");
+}, true);
+
+document.addEventListener("online", function() {
+  networkstatus = "online";
+  console.log("You are now online");
+}, true);
+
+document.addEventListener("offline", function() {
+  networkstatus = "offline";
+  console.log("You are now offline");
+}, true);
+</script>
 </head>
 <body>
 
@@ -357,17 +383,22 @@ section {
                         <a href="#roomsignup">Login with your Youtube account and sign up for a free room there!</a>
                         </p>
 
-                        <h3>Rules</h3>
-                        <p>You will have a roommate(s).  You can ask for your preferred roommate(s).  This is to make sure that we can get as many people who want to attend as needed. Not everyone has $400-$800 to spend on a room for the weekend, but many in the community are super.</p>
+                        <h2>Rules</h2>
+                        <p>If you are selected, you will receive a free stay at the convention.</p>
+                        <p>Selected streamers will also receive travel assistance to the convention as well.</p>
+                        <p>You will have a roommate(s).  You can ask for your preferred roommate(s).  This is to make sure that we can get as many people who want to attend as needed. Not everyone has $400-$800 to spend on a room for the weekend, but the plan is get as much of the awesome community there to party as possible.</p>
+
+
+
                         <p>Respect your roommate(s).  Don't smoke in the room, don't be loud all night, etc...</p>
                         <p>The room is for Friday and Saturday nights. Thursday nights may be covered  depending on the status of the scholarship and internationals will get preference on these.</p>
                         <p>Internationals are welcomed to apply!  Are you from Canada? Serbia? somewhere else?  Apply and let's see what airfare is and if we can do it before you look down on the idea. We live in faith and excitement!</p>
-                        <p>If you feel interested to add to the scholarship, please dm biolithic on discord/twitter</p>
-                        <p>If you feel that you can easily pay for your room, then it would be appreciated if you let those scholarship funds go towards airfare/room for another person who would really like to go.</p>
+                        <p>If you feel interested to add to the scholarship, please dm biolithic on discord/twitter privately.</p>
+                        <p>If you feel that you work a full time job and can easily pay for your room, then it would be appreciated if you let those scholarship funds go towards airfare/room for another person who would really like to go that may face a challenge.</p>
                         <p>Everyone I've met has been really great in person, just like on stream!  Let's keep it that way.</p>
                         <p>Rooms given out will be male - male and female - female to avoid drama.</p>
-                        <p>One of the big pluses of this convention is meeting friends, belonging to the group, networking, and sharing a good time together. So the group block of rooms exists! No one knows your room number, however, for privacy.</p>
-                        <p>This is not so much "Andy is great" as it is "trying to maximize your time in fun and minimize stressing about travel and calling the hotel to confirm and all that boring jazz".</p>
+                        <p>One of the big pluses of this convention is meeting friends, belonging to the group, networking with others, and sharing a good time together. So the group block of rooms exists! No one knows your room number, however, for privacy.</p>
+                        <p>This is not so much "Andy/whoever is great" or trying to get popular as it is trying to maximize your time having fun and minimize stressing about travel and calling the hotel to confirm and all that boring jazzs.</p>
                         <p>You must be 18 or older in January 2019 to receive this or show written parental permission.</p>
                         <p>You are not guaranteed a spot. As we gain applicants, we will let you know by October at the latest.</p>
                         <p>We won't tell anyone your real name, your room number or that you even are part of this group. This is just to make it as easy as possible for you to attend.</p>
@@ -378,14 +409,20 @@ section {
                         <input type="text">
                         <label>Country flying from</label>
                         <input type="text">
-                        <button id="signup" class="pure-button">Signup, its free</button>
+                        <button id="signup" onclick="handleAuthClick();" class="pure-button">Signup, its free</button>
 
                         <hr>
                         <p>What's the catch?</p>
                         <p>There is no catch, its just that we have been blessed by God with some financial resources and wish to be generous back to the community through this.</p>
-                        <p>So anyone gets in?</p>
-                        <p>No, only those people we see who are actively trying to make the streaming community a better place: mods, streamers, benefactors, active people who help out in streams and are friendly.</p>
 
+                        <hr />
+
+                        <p>"Wait, if you have money, donate to me. Donate to me on stream! I want this money!" </p>
+                        <p>No, we have at least 4 times in the last 2 years donated large sums of money to people to attend the event and the person never showed up.  Happy you got the money, but the real deal is that people wanted to see you at the meetup.</p>
+
+                        <p>This isn't "There is a Fortnite tournament and they just donate the money to everyone who asks for money".  You must sign up --  you must play to the rules -- then you receive the prize. The same with this; only you don't play fortnite, you just sign up and make the streams a better place to be.</p>
+
+                        <p>People behind this scholarship do donate on streams every week.</p>
 
                         <img src="https://scontent-ort2-2.cdninstagram.com/vp/4c29cb4bc4f0f3659395ce33475da59e/5C0FA30E/t51.2885-15/e35/26275631_967150350103038_1972433403923922944_n.jpg">
 
@@ -655,12 +692,210 @@ document.getElementById("Rules-btn").addEventListener("click", function(){
     hideSections();
     document.getElementById("Rules").style.display = "block";
 });
+
+
+
+
+
+
+
+
+
+
+
+
+GoogleAuth = "";
+var SCOPE = 'https://www.googleapis.com/auth/youtube.force-ssl';
+
+function handleClientLoad() {
+    // Load the API's client and auth2 modules.
+    // Call the initClient function after the modules load.
+    console.log("handleClientLoad");
+    gapi.load('client:auth2', initClient);
+}
+
+function initClient() {
+    console.log("initClient 1");
+    // Retrieve the discovery document for version 3 of YouTube Data API.
+    // In practice, your app can retrieve one or more discovery documents.
+    var discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest';
+
+    // Initialize the gapi.client object, which app uses to make API requests.
+    // Get API key and client ID from API Console.
+    // 'scope' field specifies space-delimited list of access scopes.
+    gapi.client.init({
+        'apiKey': 'AIzaSyBsUU3yXGjetikZdLIWt-9_SapFOBxNgD4',
+        'discoveryDocs': [discoveryUrl],
+        'clientId': '1093775538128-29fnj4mj326ctueiqjonl36m1hiqcnbt.apps.googleusercontent.com',
+        'scope': SCOPE
+    }).then(function() {
+        console.log("initClient 2");
+        GoogleAuth = gapi.auth2.getAuthInstance();
+
+        // Listen for sign-in state changes.
+        GoogleAuth.isSignedIn.listen(updateSigninStatus);
+
+        // Handle initial sign-in state. (Determine if user is already signed in.)
+        var user = GoogleAuth.currentUser.get();
+        setSigninStatus();
+    });
+}
+
+function handleAuthClick() {
+    if (networkstatus !== "online") {
+        alert("Error: You are offline. Try again when you have a network connection.");
+    } else {
+
+        console.log("handleAuthClick");
+        if (GoogleAuth.isSignedIn.get()) {
+            // User is authorized and has clicked 'Sign out' button.
+            GoogleAuth.signOut();
+            window.biolithicMyName = "";
+            window.biolithicMyChannel = "";
+        } else {
+            // User is not signed in. Start Google auth flow.
+            GoogleAuth.signIn();
+        }
+    }
+}
+
+function revokeAccess() {
+    GoogleAuth.disconnect();
+}
+
+function createResource(properties) {
+    console.log("createResource");
+    var resource = {};
+    var normalizedProps = properties;
+    for (var p in properties) {
+        var value = properties[p];
+        if (p && p.substr(-2, 2) == '[]') {
+            var adjustedName = p.replace('[]', '');
+            if (value) {
+                normalizedProps[adjustedName] = value.split(',');
+            }
+            delete normalizedProps[p];
+        }
+    }
+    for (var p in normalizedProps) {
+        // Leave properties that don't have values out of inserted resource.
+        if (normalizedProps.hasOwnProperty(p) && normalizedProps[p]) {
+            var propArray = p.split('.');
+            var ref = resource;
+            for (var pa = 0; pa < propArray.length; pa++) {
+                var key = propArray[pa];
+                if (pa == propArray.length - 1) {
+                    ref[key] = normalizedProps[p];
+                } else {
+                    ref = ref[key] = ref[key] || {};
+                }
+            }
+        };
+    }
+    return resource;
+}
+
+function removeEmptyParams(params) {
+    for (var p in params) {
+        if (!params[p] || params[p] == 'undefined') {
+            delete params[p];
+        }
+    }
+    return params;
+}
+
+function buildApiRequest(requestMethod, path, params, properties) {
+    params = removeEmptyParams(params);
+    var request;
+    if (properties) {
+        var resource = createResource(properties);
+        request = gapi.client.request({
+            'body': resource,
+            'method': requestMethod,
+            'path': path,
+            'params': params
+        });
+    } else {
+        request = gapi.client.request({
+            'method': requestMethod,
+            'path': path,
+            'params': params
+        });
+    }
+    executeRequest(request);
+}
+
+function defineRequest() {
+    buildApiRequest('GET', '/youtube/v3/channels', {
+        'mine': 'true',
+        'part': 'snippet'
+    }); // ,contentDetails
+}
+
+
+// ON LOGIN HERE
+function executeRequest(request) {
+    console.log("executeRequest");
+    request.execute(function(response) {
+        console.log("response");
+        console.log(response);
+        if (response.items[0]) {
+            window.biolithicMyName = response.items[0].snippet.title;
+            window.biolithicMyChannel = response.items[0].id;
+            signup();
+        }
+
+    });
+}
+
+function setSigninStatus(isSignedIn) {
+    console.log("setSigninStatus");
+    var user = GoogleAuth.currentUser.get();
+    var isAuthorized = user.hasGrantedScopes(SCOPE);
+    if (isAuthorized) {
+        defineRequest();
+        window.biolithicUser = user.w3.ig;
+        document.getElementById('signup').textContent = 'Sign Out';
+    } else {
+        document.getElementById('signup').textContent = 'Login With Your Youtube to signup';
+    }
+}
+
+function updateSigninStatus(isSignedIn) {
+    console.log("updateSigninStatus");
+    setSigninStatus();
+}
+
+
+function signup(con) {
+    if (networkstatus !== "online") {
+        alert("Error: You are offline. Try again when you have a network connection.");
+    } else {
+        console.log("signup");
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'https://www.theytg.com/cons/write.php');
+        var params = "&con=south&youtube_name=" +  window.biolithicUser + "&urgo=AIzaSyAGreq1WKU0RT_Z7Yybbq4xv154asrMLuc";
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
+            if (xhr.status !== 200) {
+                alert('Request failed.  Returned status of ' + xhr.status);
+            }
+            var data = xhr.response;
+            console.log(data);
+            if (data == "delete") {
+                alert("You have released your spot at " + con + " in 2018. It will be available to the general public now, first come first serve.");
+            } else {
+                alert("You have signed up to stay at " + con + " in 2018. Thank you, and more information will be given a couple weeks before the event.");
+            }
+        }
+        xhr.send(params);
+        return false;
+      }
+}
 </script>
-
-
-
-
-
-
+<script async defer src="https://apis.google.com/js/api.js"
+      onload="this.onload=function(){}; handleClientLoad()"
+      onreadystatechange="if (this.readyState === 'complete') this.onload()">
+</script>
 </body>
 </html>
