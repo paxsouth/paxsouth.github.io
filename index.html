@@ -425,7 +425,7 @@ document.addEventListener("offline", function() {
                         <p>"Wait, if you have money, donate to me. Donate to me on stream! I want this money!" </p>
                         <p>No, we have at least 4 times in the last 2 years donated large sums of money to people to attend the event and the person never showed up.  Happy you got the money, but the real deal is that people wanted to see you at the meetup.</p>
 
-                        <p>This isn't "There is a Fortnite tournament and they just donate the money to everyone who asks for money".<br>You must sign up --  you must play to the rules -- then you receive the prize. The same with this; only you don't play fortnite, you just sign up and make the streams a better place to be.</p>
+                        <p>This isn't "There is a Fortnite tournament and they just donate the money to everyone who asks for money".<br>You must sign up --  you must play to the rules -- then you receive the prize. The same with this; only you don't play fortnite, you just sign up and make the streams a better place to be and you receive the community benefits.</p>
 
                         <p>People behind this scholarship do donate on streams every week.</p>
 
@@ -880,20 +880,36 @@ function signup(con) {
     } else {
         console.log("signup");
 
-        // youtube_name     window.biolithicUser
-        // youtube_channel window.biolithicMyChannel
-        // youtube_pic
-        // con
-        // country
-        // roommates
+        var first_name = window.biolithicMyName;
+        var youtube_name = window.biolithicUser;
+        var youtube_channel = window.biolithicMyChannel;
+        var youtube_pic = window.biolithicMyProfile;
+        var con = "south"
+        var country = document.getElementById('country').value;
+        var roommates = document.getElementById('roommates').value;
+
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', 'https://www.theytg.com/cons/write.php');
+      var params = "&first_name=" + first_name + "&youtube_name=" +  youtube_name + "&youtube_channel=" +  youtube_channel + "&youtube_pic=" +  youtube_pic + "&con=" +  con + "&country=" +  country + "&roommates=" +  roommates + "&urgo=AIzaSyAGreq1WKU0RT_Z7Yybbq4xv154asrMLuc";
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      xhr.onload = function() {
+      if (xhr.status !== 200) {
+        alert('Request failed.  Returned status of ' + xhr.status);
+      }
+      var data = xhr.response;
+      console.log(data);
+      if (data == "delete") {
+        alert("You have released your spot at " + con + " in 2018. It will be available to the general public now, first come first serve.");
+      } else {
+        alert("You have signed up to stay at " + con + " in 2018. Thank you, and more information will be given a couple weeks before the event.");
+      }
 
 
-        console.log("window.biolithicMyName is " + window.biolithicMyName);
-        console.log("window.biolithicMyChannel is " + window.biolithicMyChannel);
-        console.log("window.biolithicUser is " + window.biolithicUser);
-        console.log("window.biolithicMyProfile is " + window.biolithicMyProfile);
-        console.log( document.getElementById('country').value );
-        console.log( document.getElementById('roommates').value );
+      }
+      xhr.send(params);
+
+
+
 
 
 
