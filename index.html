@@ -229,34 +229,60 @@ section, #signup {
         text-align: center;
     }
 }
-</style>
-<link href="https://fonts.googleapis.com/css?family=Rye" rel="stylesheet">
-<script>
-networkstatus = "a defined variable";
-if (navigator.onLine) {
-  networkstatus = "online";
+
+
+.wrapper img {
+  max-width: 200px;
+  width: 100%;
 }
 
-window.addEventListener("online", function() {
-  networkstatus = "online";
-  console.log("You are now online");
-}, true);
+.wrapper {
+  max-width: 1200px;
+  margin: 0 20px;
+  display: grid;
+  grid-gap: 10px;
+}
 
-window.addEventListener("offline", function() {
-  networkstatus = "offline";
-  console.log("You are now offline");
-}, true);
+/* no grid support? */
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
 
-document.addEventListener("online", function() {
-  networkstatus = "online";
-  console.log("You are now online");
-}, true);
+.wrapper {
+  display: grid;
+  margin: 0 auto;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-auto-rows: minmax(150px, auto);
+}
 
-document.addEventListener("offline", function() {
-  networkstatus = "offline";
-  console.log("You are now offline");
-}, true);
-</script>
+.panel {
+  /* needed for the flex layout*/
+  margin-left: 5px;
+  margin-right: 5px;
+  flex: 1 1 200px;
+}
+
+.wrapper > * {
+  background-color: #444;
+  color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 10px;
+}
+/* We need to set the margin used on flex items to 0 as we have gaps in grid.  */
+
+@supports (display: grid) {
+  .wrapper > * {
+    margin: 0;
+  }
+}
+
+.pure-button, input {
+    height: 3rem;
+}
+</style>
+<link href="https://fonts.googleapis.com/css?family=Rye" rel="stylesheet">
 </head>
 <body>
 
@@ -301,7 +327,9 @@ document.addEventListener("offline", function() {
                         <a class="pure-button" id="Rules-btn">Rules</a>
                     </li>
 
-
+                    <li class="nav-item">
+                        <a class="pure-button" id="Music-btn">Music</a>
+                    </li>
 
 
                 </ul>
@@ -323,17 +351,17 @@ document.addEventListener("offline", function() {
 
                     <div class="post-description">
                         <p>
-                            Pax South is a gaming convention held in San Antonio, Texas in a weekend in January where many streamers and streaming community members come together to have fun. It is the easiest con to attend for the most people in our community.<br>
-                            Last year, it was held January 12-14th. Dates are to be determined for this year. Official information can be found at <a href="http://south.paxsite.com/" target="_blank" >official website</a> and on Twitter at <a href="https://twitter.com/PAXSouthNews" target="_blank">Pax 1</a>
+                            Pax South is a gaming convention held in San Antonio, Texas on a weekend January 18-20th 2019 where many streamers and streaming community members come together to have fun. It is the easiest con to attend for the most people in our community.<br>
+                             Official information can be found at <a href="http://south.paxsite.com/" target="_blank" >official website</a> and on Twitter at <a href="https://twitter.com/PAXSouthNews" target="_blank">Pax 1</a>
 
                             <a href="https://twitter.com/search?f=tweets&vertical=default&q=%23paxsouth&src=typd" target="_blank">Pax 2</a>.
                         </p>
 
                         <p>
-                            This website exists to give meetup information and a signup sheet for Pax South attendees from the Youtube/Mixer streaming community. If we are more organized before hand, we can spend more fun time with each other at the event and less time in confusion, in lines, checking out, etc.
+                            This website exists to give meetup information and a room signup sheet for Pax South attendees from the Youtube/Mixer streaming community. If we are more organized before hand, we can spend more fun time with each other at the event and less time in confusion, in lines, checking out, etc.
                         </p>
 
-                        <p>We stay at the Marriott Riverwalk hotel. It is across the street from the convention and part of a mall building that holds many restaurants/bars inside of it. You will not need to rent a car there, everything is within a block or two. </p>
+                        <p>We mainly stay at the Marriott Riverwalk hotel. It is across the street from the convention and part of a mall building that holds many restaurants/bars inside of it. You will not need to rent a car there, everything is within a block or two. </p>
 
                         <p>The hotel and the convention are easily accesible for those who have difficulty walking or in wheelchairs:  these people are at the forefront of our planning thoughts.</p>
 
@@ -373,6 +401,9 @@ document.addEventListener("offline", function() {
                     </header>
 
                     <div class="post-description">
+
+                    <h2>Do you need a room for Pax South?  Look below</h2>
+
                         <p>
                             Travel and rooms are expensive!  That's why the unofficial Pax South scholarship headed by Biolithic exists.
                         </p>
@@ -380,17 +411,17 @@ document.addEventListener("offline", function() {
                               We want you to donate to the streamers, so they can upgrade their equipment and continue to produce great streams for all.  We want to thank the people that make the streams so great -- mods, sponsors, active community members who help make it a great place to be each night.  Therefore, we would like to give back to those people and make it as easy for them as possible to enjoy the vacation.
                         </p>
                         <p>
-                        The scholarship for this year 2018/Jan 2019 is currently at $9,000 for room/travel for outstanding Snipers to the convention.  Estimated final total scholarship publicly available for Pax South is $15-20,000.  We will get a group discount by renting out a bulk block of rooms early to share amongst ourselves at the Marriott Riverwalk.  First preference will go to those in financial need.
+                        The scholarship for this year 2018/Jan 2019 is currently at $9,000 for room/travel for outstanding Snipers to the convention.  Estimated final total scholarship publicly available to give out for Pax South is $15-20,000.  We got a group discount by renting out a bulk block of rooms early to share amongst ourselves at the Marriott Riverwalk.  First preference will go to those in financial need and moderators of One Shot Nation.
                         </p>
 
                         <p>
-                        <a href="#roomsignup">Login with your Youtube account and sign up for a free room there!</a>
+                        <a href="#roomsignup">Login with your Youtube account and sign up for the free room share!</a>
                         </p>
 
                         <h2>Rules</h2>
                         <p>If you are selected, you will receive a free stay at the convention.</p>
-                        <p>Selected streamers will also receive travel assistance to the convention as well.</p>
-                        <p>You will have a roommate(s).  You can ask for your preferred roommate(s).  This is to make sure that we can get as many people who want to attend as needed. Not everyone has $400-$800 to spend on a room for the weekend, but the plan is get as much of the awesome community there to party as possible.</p>
+                        <p>Selected fans of One Shot Gurl will also receive travel assistance to the convention as well.</p>
+                        <p>You will have a roommate(s).  You can ask for your preferred roommate(s).  This is to make sure that we can get as many people who want to attend as needed. Hotel money is difficult for the weekend for some folks, but the plan is get as much of the awesome community there to party as possible.</p>
 
                         <p><em>Is it scary rooming with a random stranger at Pax South?</em></p>
                         <p><em>Just pick some you know or feel comfortable with from the streams, it aint gonna kill you to room 2 or 3 nights with a fellow streamer or someone you click with from the stream chats every week</em></p>
@@ -398,7 +429,7 @@ document.addEventListener("offline", function() {
                         <p>Respect your roommate(s).  Don't smoke in the room, don't be loud all night, etc...</p>
                         <p>The room is for Friday and Saturday nights. Thursday nights may be covered  depending on the status of the scholarship and internationals will get preference on these.</p>
                         <p>Internationals are welcomed to apply!  Are you from Canada? Serbia? somewhere else?  Apply and let's see what airfare is and if we can do it before you look down on the idea. We live in faith and excitement!</p>
-                        <p>If you feel interested to add to the scholarship, please dm biolithic on discord/twitter privately.</p>
+                        <p>If you feel interested to add to the scholarship for others, please dm biolithic on discord/twitter privately.</p>
                         <p>If you feel that you work a full time job and can easily pay for your room, then it would be appreciated if you let those scholarship funds go towards airfare/room for another person who would really like to go that may face a challenge.</p>
                         <p>Everyone I've met has been really great in person, just like on stream!  Let's keep it that way.</p>
                         <p>Rooms given out will be male - male and female - female to avoid drama.</p>
@@ -470,8 +501,422 @@ document.addEventListener("offline", function() {
 
                     <div class="post-description">
                         <p>
-                            Pax South has the greatest amount of Youtube Gaming streamers you will see in one place this year. It is really awesome to meet them.  This will be a list of the streamers attending this year.
+                            Pax South has the greatest amount of Youtube Gaming streamers you will see in one place this year.<br>
+                            It is really awesome to meet them! 🌟🌟🌟 😍 <br>
+                            Here is the current list of confirmed streamers/stars you may meet there, go check their channels out so you recognize them when you see them. Subscribe to their channels and follow them on social media for their meetup info!<br>
+                            (Not Youtube specific). <br>
+                            This list is current as of 8/15/18<br>
                         </p>
+
+<div class="wrapper">
+
+<a class="panel" target="_blank"  data-id="UCGkCHD9P5QzlxzaZfMjM10g">
+<h3>5tat</h3>
+<img src="https://yt3.ggpht.com/-FwU7h6Tiz8A/AAAAAAAAAAI/AAAAAAAAAAA/p-tpPJh5diM/s100-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+
+<!--
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCXo-YLsJ-aQ4yCYP_Tj-qXw">
+<h3>Azralynn</h3>
+<img src="https://yt3.ggpht.com/-LD5vNPJbzkY/AAAAAAAAAAI/AAAAAAAAAAA/yN1rguoiQpI/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+-->
+
+<!--
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCmydrQwDJ12_8vAwRv-aqKw">
+<h3>BarbaraEMac</h3>
+<img src="https://yt3.ggpht.com/-byzy4xSxkQw/AAAAAAAAAAI/AAAAAAAAAAA/XQUiQnf_Y9s/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UC0I8-tH1G7z2mjzDRiuBmNA">
+<h3>Biolithic</h3>
+<img src="https://yt3.ggpht.com/-l16LcYbl4Mg/AAAAAAAAAAI/AAAAAAAAAAA/dJVU7T8R53U/s100-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+-->
+
+<!--
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCGuLDUa0HGN5xlNN-hDhuPg">
+<h3>BunnyHop</h3>
+<img src="https://yt3.ggpht.com/-UnOIzYb1QCQ/AAAAAAAAAAI/AAAAAAAAAAA/2L5EusttFDI/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+-->
+
+
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCSVGgxD_kBaivbT2EZtyYmQ">
+<h3>Cam Laf</h3>
+<img src="https://yt3.ggpht.com/-ai991_CY2jI/AAAAAAAAAAI/AAAAAAAAAAA/-Lv3nSE3OLs/s288-mo-c-c0xffffffff-rj-k-no/photo.jpg" />
+</a>
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCLe5WYOJF71ODAjjGQIFURw">
+<h3>CJ Slipstream</h3>
+<img src="https://yt3.ggpht.com/-yBf53EC4W-w/AAAAAAAAAAI/AAAAAAAAAAA/spicYCP1TPg/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCBltWSh2lKOLiyFjhIu-K0A">
+<h3>CharieBlossom</h3>
+<img src="https://yt3.ggpht.com/-dvG4YjvwZws/AAAAAAAAAAI/AAAAAAAAAAA/thtnzAYfvhs/s288-mo-c-c0xffffffff-rj-k-no/photo.jpg" />
+</a>
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCXbNx_SUT2KPJegH3XWSGDQ">
+<h3>ChrisesFace</h3>
+<img src="https://yt3.ggpht.com/-ERRkX-zaShg/AAAAAAAAAAI/AAAAAAAAAAA/pL4KYCZHDgU/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCMKAlqDJwpybR98m6WSciKA">
+<h3>CorkyDancer</h3>
+<img src="https://yt3.ggpht.com/-YHfQLZR9yHc/AAAAAAAAAAI/AAAAAAAAAAA/Kg716QqgMaA/s100-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UC3RsO7wvI1ORdwr051Vq7Tg">
+<h3>Clay Stehling</h3>
+<img src="https://yt3.ggpht.com/-bHLtxlFnMwY/AAAAAAAAAAI/AAAAAAAAAAA/qMLuFncBtIo/s288-mo-c-c0xffffffff-rj-k-no/photo.jpg" />
+</a>
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UC1339v1N7DPY-22Ee2KnhYQ">
+<h3>Desert Darlin</h3>
+<img src="https://yt3.ggpht.com/-m2aQw4NcbgU/AAAAAAAAAAI/AAAAAAAAAAA/u3ArchwzkJI/s288-mo-c-c0xffffffff-rj-k-no/photo.jpg" />
+</a>
+
+
+
+<!--
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCYrPZNANZNPw3hDbZOrbqLg">
+<h3>Easelm</h3>
+<img src="https://yt3.ggpht.com/-lnIcbZ0pEwg/AAAAAAAAAAI/AAAAAAAAAAA/CoDmZGRmZLk/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+-->
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCg-PJNoBSSDB5SyTawczxKA">
+<h3>FearandMootsie</h3>
+<img src="https://yt3.ggpht.com/-i-Ze8U3A8E8/AAAAAAAAAAI/AAAAAAAAAAA/4KlwHmTV5ag/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+
+
+<!--
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCoMp04XXbecWO4wo1L4w9dw">
+<h3>Foxyzilla</h3>
+<img src="https://yt3.ggpht.com/-qeK-xUprhRY/AAAAAAAAAAI/AAAAAAAAAAA/i2-1nmnq3Ns/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCWDIL65Y3kHmLjfp_0ZrpfQ">
+<h3>GameAttack</h3>
+<img src="https://yt3.ggpht.com/-GNSc5FQPkL8/AAAAAAAAAAI/AAAAAAAAAAA/RaKPDs9yekM/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCC7MHynG0c9rkFziVRbxOMQ">
+<h3>Galadriex</h3>
+<img src="https://yt3.ggpht.com/-DSNKzLcTeMg/AAAAAAAAAAI/AAAAAAAAAAA/Rm3nHt-Sr5M/s288-mo-c-c0xffffffff-rj-k-no/photo.jpg" />
+</a>
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UC9itT3Azk-DqiI9UGUzxbVg">
+<h3>GameDojo</h3>
+<img src="https://yt3.ggpht.com/-_Hy-GIZkOSE/AAAAAAAAAAI/AAAAAAAAAAA/eKY0mveRMH4/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCBNWdmPOV-QD3ILnGCTzh3A">
+<h3>GarageGuyCarl</h3>
+<img src="https://yt3.ggpht.com/-4h9CKERmFjc/AAAAAAAAAAI/AAAAAAAAAAA/RcWjn-UY5gs/s100-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCSS7ic97Y_dGiRCIpzTXSCw">
+<h3>Gebs24</h3>
+<img src="https://yt3.ggpht.com/-B8fb-wCQtfY/AAAAAAAAAAI/AAAAAAAAAAA/C24sDMEFNCo/s288-mo-c-c0xffffffff-rj-k-no/photo.jpg" />
+</a>
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UC3_9lXJ-8ceSqh1EhOcd6Jg">
+<h3>Gta5Girl</h3>
+<img src="https://yt3.ggpht.com/-Qgq2CfoQlVw/AAAAAAAAAAI/AAAAAAAAAAA/2tvxXJLJIP0/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCiBgKV5fLHp_rrMLjFYnb2Q">
+<h3>HypeYTG</h3>
+<img src="https://yt3.ggpht.com/-Oma-yZsjCqo/AAAAAAAAAAI/AAAAAAAAAAA/wQSm2h06xTo/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+-->
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCXd8in1zcIOpjTmbIqqduvQ">
+<h3>Indigodye</h3>
+<img src="https://yt3.ggpht.com/-vmfbp-RysAk/AAAAAAAAAAI/AAAAAAAAAAA/Qy2WnKOYF1w/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCeLc95ul-3GBHiOtC4uStTg">
+<h3>ItsShifShif</h3>
+<img src="https://yt3.ggpht.com/-CFKqIDNxUDY/AAAAAAAAAAI/AAAAAAAAAAA/mC-vWAT3XtA/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+
+<!--
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCHJoW8vmGQm3XdA_bzB0PSg">
+<h3>IsaGomez</h3>
+<img src="https://yt3.ggpht.com/-HN__rtdMAmo/AAAAAAAAAAI/AAAAAAAAAAA/i70XJ_vljr0/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UChpGTAis2_WkLZWsONBroSw">
+<h3>J-Kraken</h3>
+<img src="https://yt3.ggpht.com/-2wk5YyBqa_M/AAAAAAAAAAI/AAAAAAAAAAA/6ETZzRvd86E/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+-->
+
+<a class="panel" target="_blank" href="https://www.youtube.com/channel/UC6bVYPbpFBpZ_a4U_G3JqQQ">
+<h3>JaneEightFive</h3>
+<img src="https://yt3.ggpht.com/-0Msbf2--b-w/AAAAAAAAAAI/AAAAAAAAAAA/3ddgKF521FM/s288-mo-c-c0xffffffff-rj-k-no/photo.jpg" />
+</a>
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCHpjVMSY1v0aSha4YSqlGBQ">
+<h3>Jazzythedog81</h3>
+<img src="https://yt3.ggpht.com/-Am3Xmp7Nt7Q/AAAAAAAAAAI/AAAAAAAAAAA/gG_r0ey6o2A/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UC9WNU1lpfFslLs2oOnNofaQ">
+<h3>Jen848</h3>
+<img src="https://yt3.ggpht.com/-7BKDT7WF_v8/AAAAAAAAAAI/AAAAAAAAAAA/niTyCIMjfQE/s288-mo-c-c0xffffffff-rj-k-no/photo.jpg" />
+</a>
+
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCr2NJ_XRUX8vVYTMf66D9Cg">
+<h3>Josh ACTION Acton</h3>
+<img src="https://yt3.ggpht.com/-p30p7lcOC9g/AAAAAAAAAAI/AAAAAAAAAAA/4EB61TSOo50/s288-mo-c-c0xffffffff-rj-k-no/photo.jpg" />
+</a>
+
+<a class="panel" target="_blank"  href="https://www.twitch.tv/juice_box_ninja">
+<h3>JuiceBoxNinja</h3>
+<img src="https://yt3.ggpht.com/-JFlIxEts3Aw/AAAAAAAAAAI/AAAAAAAAAAA/chUd9MSd7Uw/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+
+<!--
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCQO0Q-nYsGXbo8QtRkXBLmg">
+<h3>KatGames</h3>
+<img src="https://yt3.ggpht.com/-mk9_Pc0-aa4/AAAAAAAAAAI/AAAAAAAAAAA/jxmiNK6sPNQ/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+-->
+
+<!--
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCivS7BtzFGDkUko8r9EUwhA">
+<h3>LexIsOnFyre</h3>
+<img src="https://yt3.ggpht.com/-oUWAarWyGzw/AAAAAAAAAAI/AAAAAAAAAAA/Ktu9tu4LOB0/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+-->
+
+<!--
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UC2qp-wQkwQpe_uH7uf_R7cg">
+<h3>Mashstars</h3>
+<img src="https://yt3.ggpht.com/-RcewT_FPAv0/AAAAAAAAAAI/AAAAAAAAAAA/RBfuFdUNoA4/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCuH-_8KML_n0cwt34BCpGlQ">
+<h3>Mijou</h3>
+<img src="https://yt3.ggpht.com/-8XF3FR0uj98/AAAAAAAAAAI/AAAAAAAAAAA/P0LAjymLBwQ/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCHtEpP2_KmP5Ndd6K8wML5A">
+<h3>Mah Kurosaki</h3>
+<img src="https://yt3.ggpht.com/-nf_39fvaqlQ/AAAAAAAAAAI/AAAAAAAAAAA/aN76yi-IG8M/s288-mo-c-c0xffffffff-rj-k-no/photo.jpg" />
+</a>
+-->
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UC9o8dOBPZCafJ2v8oBtoczg">
+<h3>Lummii</h3>
+<img src="https://yt3.ggpht.com/-_LWEAXtTK5E/AAAAAAAAAAI/AAAAAAAAAAA/vOlIwr1WNys/s288-mo-c-c0xffffffff-rj-k-no/photo.jpg" />
+</a>
+
+<a class="panel" target="_blank"  href="https://mixer.com/MepTech">
+<h3>MepTech</h3>
+<img src="https://lh3.googleusercontent.com/a-/ACSszfH6C8Vkn7i7JOZ5zArIxvMbh-crWozq-oUcoA=s176-c-k-c0x00ffffff-no-rj-mo" />
+</a>
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCawiWZk_iE_W6_2Y1al8XcQ">
+<h3>Mousey Kireena</h3>
+<img src="https://yt3.ggpht.com/-RAM2bQV1eVo/AAAAAAAAAAI/AAAAAAAAAAA/YMhi1AM7Q0c/s288-mo-c-c0xffffffff-rj-k-no/photo.jpg" />
+</a>
+
+<!--
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UC9lRSat3J2IhZ0_TOV-XNzA">
+<h3>Mustard Plays</h3>
+<img src="https://yt3.ggpht.com/-pYOsrAfG13U/AAAAAAAAAAI/AAAAAAAAAAA/YFnhTVHQJzk/s288-mo-c-c0xffffffff-rj-k-no/photo.jpg" />
+</a>
+
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCjhZ1y7fMzJL-n3Yp2hiiXg">
+<h3>MZEROGames</h3>
+<img src="https://yt3.ggpht.com/-qbrv1qiTwV0/AAAAAAAAAAI/AAAAAAAAAAA/SuEVy1p_ywY/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UC6Eg58gwL4Za6vfZIssTSHQ">
+<h3>MissLuckyDucky</h3>
+<img src="https://yt3.ggpht.com/-uGIGjl-eh-c/AAAAAAAAAAI/AAAAAAAAAAA/cXjdtasmv38/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCoX0Tx1Lm1C-TMDyT03aV-w">
+<h3>Narrcost</h3>
+<img src="https://yt3.ggpht.com/-Nw0pxoeBg70/AAAAAAAAAAI/AAAAAAAAAAA/UArI_iLj0g8/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UC6zVrNoS2romPX3WrR-xxTA">
+<h3>Quizzle</h3>
+<img src="https://yt3.ggpht.com/-2GR1R9vU0KU/AAAAAAAAAAI/AAAAAAAAAAA/rqK2V2ASRsQ/s288-mo-c-c0xffffffff-rj-k-no/photo.jpg" />
+</a>
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCSADQRFbFx-fwuUkINAhRkQ">
+<h3>Rebelle</h3>
+<img src="https://yt3.ggpht.com/-ZtVlS48lH9c/AAAAAAAAAAI/AAAAAAAAAAA/Wk2MkyIWCa4/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCiJPRG-vusIUjfcdy27UZew">
+<h3>Rehthea</h3>
+<img src="https://yt3.ggpht.com/-wNdeyyWnPcw/AAAAAAAAAAI/AAAAAAAAAAA/IixqS2uTUac/s100-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCFlKOS0kltyYeueqeJvHyBA">
+<h3>Sansens_World</h3>
+<img src="https://yt3.ggpht.com/-oxf6FGO3g2g/AAAAAAAAAAI/AAAAAAAAAAA/6447x7gLB5E/s288-mo-c-c0xffffffff-rj-k-no/photo.jpg" />
+</a>
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCMDjvL2N93tyfG4OvoimOWw">
+<h3>Savage</h3>
+<img src="https://yt3.ggpht.com/-NTD3RTXQ-Ng/AAAAAAAAAAI/AAAAAAAAAAA/KVmnyADosbA/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCn9egVTd23abXxeHdL56w8w">
+<h3>Shandab3ar</h3>
+<img src="https://yt3.ggpht.com/-t37HHhpnQ2M/AAAAAAAAAAI/AAAAAAAAAAA/q_-XuqkNKcY/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+
+-->
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCoQy7bIaDkPOszLEbJsWTtw">
+<h3>One_Shot_Gurl</h3>
+<img src="https://yt3.ggpht.com/-Z_7WftbeNOQ/AAAAAAAAAAI/AAAAAAAAAAA/vSxBpWi4J7k/s100-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCHYVuhpPLkTdlvSgKjFePGQ">
+<h3>PrizefighterIV</h3>
+<img src="https://yt3.ggpht.com/-VaB9hh6c7Fs/AAAAAAAAAAI/AAAAAAAAAAA/tCP9mdxEreE/s100-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCs5wBA3jUqBI18ORmxGesew">
+<h3>RiverPB</h3>
+<img src="https://yt3.ggpht.com/-PmKgvxfivFI/AAAAAAAAAAI/AAAAAAAAAAA/ZBjBtJxIrJw/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCFvAOgs7gVnOKETI4CO4maA">
+<h3>Sharon</h3>
+<img src="https://yt3.ggpht.com/-1hU6aOAiVg4/AAAAAAAAAAI/AAAAAAAAAAA/W82Pl9gXqNI/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+
+<!--
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCKiXwmjkjogWkThhwOH6BrA">
+<h3>Sheals</h3>
+<img src="https://yt3.ggpht.com/-QUjSf-k3j58/AAAAAAAAAAI/AAAAAAAAAAA/Iti79mziq2g/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+-->
+
+<!--
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCYJ9-LqeKAjF4SMQQj9eIsg">
+<h3>ShyKmy</h3>
+<img src="https://yt3.ggpht.com/-_ds6KHgZoIk/AAAAAAAAAAI/AAAAAAAAAAA/bviKrxwPkyk/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCi86rr0IoUgX1MAECFTHyZQ">
+<h3>SkyMcSparklePants</h3>
+<img src="https://yt3.ggpht.com/-xLl05cLKe3o/AAAAAAAAAAI/AAAAAAAAAAA/UITJdTuwjN4/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+-->
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UC2vrC8pAu5YiRxltvfGssfA">
+<h3>SnapClickKat</h3>
+<img src="https://yt3.ggpht.com/-I5ZGda1JqXo/AAAAAAAAAAI/AAAAAAAAAAA/KftgIQ6R3wU/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCvS093Iw55yqwQpAUltFK5Q">
+<h3>Supercrier AWP</h3>
+<img src="https://yt3.ggpht.com/-LcE2iKYANMk/AAAAAAAAAAI/AAAAAAAAAAA/qGLCpnpcxo0/s288-mo-c-c0xffffffff-rj-k-no/photo.jpg" />
+</a>
+
+
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UC5zciCgrjVZcEi6YiPzYgVw">
+<h3>Tiny Squirtle</h3>
+<img src="https://yt3.ggpht.com/-ke1YvIavJBY/AAAAAAAAAAI/AAAAAAAAAAA/kDFLYusDyQw/s288-mo-c-c0xffffffff-rj-k-no/photo.jpg" />
+</a>
+
+<!--
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCgW7q-VI1ivu93gpmTGccpA">
+<h3>SophieBreca</h3>
+<img src="https://yt3.ggpht.com/-A40DH9EAXxI/AAAAAAAAAAI/AAAAAAAAAAA/LJ4zGuLm8tQ/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCqWCN4usP06uQpyhDx5_yrg">
+<h3>StellarWill</h3>
+<img src="https://yt3.ggpht.com/-RNaBEe9IPM4/AAAAAAAAAAI/AAAAAAAAAAA/WAhAbJqd5Gg/s288-mo-c-c0xffffffff-rj-k-no/photo.jpg" />
+</a>
+
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UC2akTXZkJpbw1oRadZW_3Hg">
+<h3>Taeya</h3>
+<img src="https://yt3.ggpht.com/-DNSHnWEkqRY/AAAAAAAAAAI/AAAAAAAAAAA/PrqXAiOvjog/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCpXMg_AsC-bXk4XDtJxLPBA">
+<h3>Veller</h3>
+<img src="https://yt3.ggpht.com/-IhsS93G8yH0/AAAAAAAAAAI/AAAAAAAAAAA/pToKd-WnR6M/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UC-Ju3LCIu53b4WU4VxzvXNg">
+<h3>Wangster</h3>
+<img src="https://yt3.ggpht.com/-8UtY1S96WiU/AAAAAAAAAAI/AAAAAAAAAAA/5EMfKxkbefg/s288-mo-c-c0xffffffff-rj-k-no/photo.jpg" />
+</a>
+-->
+
+<!--
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCfBQL6N4Cbjd4PnCbrhbrxQ">
+<h3>YoungxxSnookixx</h3>
+<img src="https://yt3.ggpht.com/-dtko3K5JCd8/AAAAAAAAAAI/AAAAAAAAAAA/dXnecNm-MF8/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+-->
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCiJ-sKDr7VCiV7hasJqxv-A">
+<h3>xbassistdoodx</h3>
+<img src="https://yt3.ggpht.com/-X1p72g1GmIU/AAAAAAAAAAI/AAAAAAAAAAA/3e0IO6eFS2s/s288-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+</a>
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCT82dZHUbc8dVgBHdGMwqcw">
+<h3>Yibbie</h3>
+<img src="https://yt3.ggpht.com/-ugF3Gy3xgB8/AAAAAAAAAAI/AAAAAAAAAAA/ZHdSRKWsjPM/s288-mo-c-c0xffffffff-rj-k-no/photo.jpg" />
+</a>
+
+<a class="panel" target="_blank"  href="https://www.youtube.com/channel/UCYoCYQ43hrxGtVyYF7xp3rw">
+<h3>ZachBrowningOutdoors</h3>
+<img src="https://yt3.ggpht.com/-wKlAHrWnxmI/AAAAAAAAAAI/AAAAAAAAAAA/NeQ3Vhrd8ck/s288-mo-c-c0xffffffff-rj-k-no/photo.jpg" />
+</a>
+</div>
+
+List of Stream Community Folks Attending: <br>
+Dude7836<br>
+HannahM The Baking Queen<br>
+Chynna Streamer Dreamer<br>
+Armin MrBosna<br>
+NinjAngel48<br>
+Otaku Momma<br>
+Rachel Marie<br>
+JackChugger<br>
+Megstars<br>
+Kelli Kitchens<br>
+DaFeralOne<br>
+KahPah<br>
+LiquidBurn<br>
+JackO<br>
+Biolithic<br>
+Pauls Place<br>
+Lord Calvin/Patrick<br>
+Put0ut<br>
+
+
                     </div>
                 </section>
 
@@ -499,13 +944,13 @@ document.addEventListener("offline", function() {
       <h2>When is it?
       </h2>
       <div>
-      A weekend, tenatively Jan 12th - 14th (Friday - Sun) 2019.
+      A weekend, Jan 18th - 20th (Friday - Sun) 2019.
       </div>
 
       <h2>Is it on a school night?
       </h2>
       <div>
-      Many schools do not hold classes Friday night, Saturday or Sunday, and the following Monday is a Federal holiday in Martin Luther King Jr. Day. Therefore, most nine to five workers and students can attend.
+      Many schools do not hold classes Friday night, Saturday or Sunday. Therefore, most nine to five workers and students can attend.
       </div>
 
       <h2>Will my child travel alone?
@@ -638,6 +1083,38 @@ document.addEventListener("offline", function() {
                 </section>
 
 
+
+
+
+
+            <section class="post" id="Music">
+                <header class="post-header">
+                    <h2 class="post-title">Streamers Jam Session/Music Meetup</h2>
+                </header>
+                <div class="post-description">
+                <p>
+                New for this year in 2019 is the music meetup or streamer jam session Paul's Place and Biolithic are trying to organize.  In addition to eating, drinking, playing video games and chatting, there are some streamers and community members attending which may write and perform music to their own channel and have an interest in video game music or playing music on the side.
+                </p>
+                <p>How cool would it be to see BassistDood on bass, CJ Slipstream on guitar and Biolithic on drums jamming a song out live?  How about GameDojo and One Shot Gurl dualing keys together?  These are not real, set in stone events but ideas of what could be possible in an hour or two of a streaming music meetup.  Have some imagination, people - don't be a typical offended American.
+                </p>
+                <p>Please note -- we are not banning card games and video games forever!  We like them too.  We are only trying to see who be interested in attending a single music meetup at a specific time to have fun playing music together or talking about making/playing music works in live streaming for a couple hours.  Or listening to your favourite streamers perform together.
+                </p>
+                <p>If we brought mics and instruments, would you attend this to play?  Attend to talk about music?  Attend for karoake?  Attend to watch?</p>
+
+                <hr>
+                <p>The event would be free and not cost money.</p>
+
+                <hr>
+                <p>If so, contact Biolithic or Paul's Place on Discord and we will have some preliminary group chats to see what we would need and go from there!</p>
+
+                </div>
+                </section>
+
+
+
+
+
+
             </div>
 
             <div class="footer">
@@ -701,6 +1178,10 @@ document.getElementById("Rules-btn").addEventListener("click", function(){
     document.getElementById("Rules").style.display = "block";
 });
 
+document.getElementById("Music-btn").addEventListener("click", function(){
+    hideSections();
+    document.getElementById("Music").style.display = "block";
+});
 
 
 
