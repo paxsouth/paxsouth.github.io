@@ -290,7 +290,6 @@ section, #signup {
     <div class="sidebar pure-u-1 pure-u-md-1-4">
         <div class="header">
             <h1 class="brand-title">Pax South Meetup'19</h1>
-            <h2 class="brand-tagline">Info &amp; Signup</h2>
 
             <nav class="nav">
                 <ul class="nav-list">
@@ -300,15 +299,15 @@ section, #signup {
                     </li>
 
                     <li class="nav-item">
-                        <a class="pure-button" id="Travel-btn">Travel</a>
+                        <a class="pure-button" id="Streamers-btn">Meet Streamers</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="pure-button" id="Streamers-btn">Streamers</a>
+                        <a class="pure-button" id="Travel-btn">Travel Info</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="pure-button" id="Music-btn">Music</a>
+                        <a class="pure-button" id="Music-btn">Music Meetup</a>
                     </li>
 
 
@@ -321,7 +320,7 @@ section, #signup {
         <div>
 
             <div class="posts">
-                <h1 class="content-subhead">Updated 9/6/18</h1>
+                <h1 class="content-subhead">Updated 9/24/18</h1>
                 <p>Welcome to the Pax South 2019 meetup info site. Please choose a menu option to learn more.</p>
 
                 <section class="post" id="Info">
@@ -829,7 +828,7 @@ section, #signup {
             <div class="footer">
                 <div class="pure-menu pure-menu-horizontal">
                     <ul>
-                        <li class="pure-menu-item"><a href="http://twitter.com/biolithic" class="pure-menu-link">Contact</a></li>
+                        <li class="pure-menu-item"><a href="http://twitter.com/biolithic" class="pure-menu-link"><strong>Contact the owner of this page</strong></a></li>
                     </ul>
                 </div>
             </div>
@@ -852,16 +851,6 @@ document.getElementById("Info-btn").addEventListener("click", function(){
     document.getElementById("Info").style.display = "block";
 });
 
-document.getElementById("OSNMeetup-btn").addEventListener("click", function(){
-    hideSections();
-    document.getElementById("OSNMeetup").style.display = "block";
-});
-
-document.getElementById("Scholarship-btn").addEventListener("click", function(){
-    hideSections();
-    document.getElementById("Scholarship").style.display = "block";
-});
-
 document.getElementById("Travel-btn").addEventListener("click", function(){
     hideSections();
     document.getElementById("Travel").style.display = "block";
@@ -872,241 +861,11 @@ document.getElementById("Streamers-btn").addEventListener("click", function(){
     document.getElementById("Streamers").style.display = "block";
 });
 
-document.getElementById("Parents-btn").addEventListener("click", function(){
-    hideSections();
-    document.getElementById("Parents").style.display = "block";
-});
-
-document.getElementById("Pictures-btn").addEventListener("click", function(){
-    hideSections();
-    document.getElementById("Pictures").style.display = "block";
-});
-
-document.getElementById("Rules-btn").addEventListener("click", function(){
-    hideSections();
-    document.getElementById("Rules").style.display = "block";
-});
-
 document.getElementById("Music-btn").addEventListener("click", function(){
     hideSections();
     document.getElementById("Music").style.display = "block";
 });
 
 
-
-
-
-
-
-
-
-
-
-GoogleAuth = "";
-var SCOPE = 'https://www.googleapis.com/auth/youtube.force-ssl';
-
-function handleClientLoad() {
-    // Load the API's client and auth2 modules.
-    // Call the initClient function after the modules load.
-    console.log("handleClientLoad");
-    gapi.load('client:auth2', initClient);
-}
-
-function initClient() {
-    console.log("initClient 1");
-    // Retrieve the discovery document for version 3 of YouTube Data API.
-    // In practice, your app can retrieve one or more discovery documents.
-    var discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest';
-
-    // Initialize the gapi.client object, which app uses to make API requests.
-    // Get API key and client ID from API Console.
-    // 'scope' field specifies space-delimited list of access scopes.
-    gapi.client.init({
-        'apiKey': 'AIzaSyBsUU3yXGjetikZdLIWt-9_SapFOBxNgD4',
-        'discoveryDocs': [discoveryUrl],
-        'clientId': '1093775538128-29fnj4mj326ctueiqjonl36m1hiqcnbt.apps.googleusercontent.com',
-        'scope': SCOPE
-    }).then(function() {
-        console.log("initClient 2");
-        GoogleAuth = gapi.auth2.getAuthInstance();
-
-        // Listen for sign-in state changes.
-        GoogleAuth.isSignedIn.listen(updateSigninStatus);
-
-        // Handle initial sign-in state. (Determine if user is already signed in.)
-        var user = GoogleAuth.currentUser.get();
-        setSigninStatus();
-    });
-}
-
-function handleAuthClick() {
-    if (networkstatus !== "online") {
-        alert("Error: You are offline. Try again when you have a network connection.");
-    } else {
-
-        console.log("handleAuthClick");
-        if (GoogleAuth.isSignedIn.get()) {
-            // User is authorized and has clicked 'Sign out' button.
-            GoogleAuth.signOut();
-            window.biolithicMyName = "";
-            window.biolithicMyChannel = "";
-        } else {
-            // User is not signed in. Start Google auth flow.
-            GoogleAuth.signIn();
-        }
-    }
-}
-
-function revokeAccess() {
-    GoogleAuth.disconnect();
-}
-
-function createResource(properties) {
-    console.log("createResource");
-    var resource = {};
-    var normalizedProps = properties;
-    for (var p in properties) {
-        var value = properties[p];
-        if (p && p.substr(-2, 2) == '[]') {
-            var adjustedName = p.replace('[]', '');
-            if (value) {
-                normalizedProps[adjustedName] = value.split(',');
-            }
-            delete normalizedProps[p];
-        }
-    }
-    for (var p in normalizedProps) {
-        // Leave properties that don't have values out of inserted resource.
-        if (normalizedProps.hasOwnProperty(p) && normalizedProps[p]) {
-            var propArray = p.split('.');
-            var ref = resource;
-            for (var pa = 0; pa < propArray.length; pa++) {
-                var key = propArray[pa];
-                if (pa == propArray.length - 1) {
-                    ref[key] = normalizedProps[p];
-                } else {
-                    ref = ref[key] = ref[key] || {};
-                }
-            }
-        };
-    }
-    return resource;
-}
-
-function removeEmptyParams(params) {
-    for (var p in params) {
-        if (!params[p] || params[p] == 'undefined') {
-            delete params[p];
-        }
-    }
-    return params;
-}
-
-function buildApiRequest(requestMethod, path, params, properties) {
-    params = removeEmptyParams(params);
-    var request;
-    if (properties) {
-        var resource = createResource(properties);
-        request = gapi.client.request({
-            'body': resource,
-            'method': requestMethod,
-            'path': path,
-            'params': params
-        });
-    } else {
-        request = gapi.client.request({
-            'method': requestMethod,
-            'path': path,
-            'params': params
-        });
-    }
-    executeRequest(request);
-}
-
-function defineRequest() {
-    buildApiRequest('GET', '/youtube/v3/channels', {
-        'mine': 'true',
-        'part': 'snippet'
-    }); // ,contentDetails
-}
-
-
-// ON LOGIN HERE
-function executeRequest(request) {
-    console.log("executeRequest");
-    request.execute(function(response) {
-        console.log("response");
-        console.log(response);
-        if (response.items[0]) {
-            window.biolithicMyName = response.items[0].snippet.title;
-            window.biolithicMyChannel = response.items[0].id;
-            window.biolithicMyProfile = response.items[0].snippet.thumbnails.medium.url;
-        }
-
-    });
-}
-
-function setSigninStatus(isSignedIn) {
-    console.log("setSigninStatus");
-    var user = GoogleAuth.currentUser.get();
-    var isAuthorized = user.hasGrantedScopes(SCOPE);
-    if (isAuthorized) {
-        defineRequest();
-        window.biolithicUser = user.w3.ig;
-        document.getElementById('signInOrOutButton').textContent = 'Sign Out';
-        document.getElementById('signup').style.display = 'block';
-    } else {
-        document.getElementById('signInOrOutButton').textContent = 'Login With Your Youtube to signup';
-        document.getElementById('signup').style.display = 'none';
-    }
-}
-
-function updateSigninStatus(isSignedIn) {
-    console.log("updateSigninStatus");
-    setSigninStatus();
-}
-
-
-function signup(con) {
-    if (networkstatus !== "online") {
-        alert("Error: You are offline. Try again when you have a network connection.");
-    } else {
-        console.log("signup");
-
-        var first_name = window.biolithicMyName;
-        var youtube_name = window.biolithicUser;
-        var youtube_channel = window.biolithicMyChannel;
-        var youtube_pic = window.biolithicMyProfile;
-        var con = "south"
-        var country = document.getElementById('country').value;
-        var roommates = document.getElementById('roommates').value;
-
-      var xhr = new XMLHttpRequest();
-      xhr.open('POST', 'https://www.theytg.com/cons/write.php');
-      var params = "&first_name=" + first_name + "&youtube_name=" +  youtube_name + "&youtube_channel=" +  youtube_channel + "&youtube_pic=" +  youtube_pic + "&con=" +  con + "&country=" +  country + "&roommates=" +  roommates + "&urgo=AIzaSyAGreq1WKU0RT_Z7Yybbq4xv154asrMLuc";
-      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-      xhr.onload = function() {
-      if (xhr.status !== 200) {
-        alert('Request failed.  Returned status of ' + xhr.status);
-      }
-      var data = xhr.response;
-      console.log(data);
-      if (data == "delete") {
-        alert("You have released your room spot at Pax South upcoming. It will be available to the general public now, first come first serve.");
-      } else {
-        alert("You have signed up to stay at Pax South upcoming. Thank you, and more information will be given this winter before the event.");
-      }
-
-
-      }
-      xhr.send(params);
-
-      }
-}
-</script>
-<script async defer src="https://apis.google.com/js/api.js"
-      onload="this.onload=function(){}; handleClientLoad()"
-      onreadystatechange="if (this.readyState === 'complete') this.onload()">
-</script>
 </body>
 </html>
